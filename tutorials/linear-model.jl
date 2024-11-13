@@ -92,11 +92,15 @@ html"""
 
 # ╔═╡ 5705a024-8755-4e94-986b-41e7d26ad3b9
 md"""
-| Item         | Price | # In stock |
-|--------------|:-----:|-----------:|
-| Juicy Apples |  1.99 |        739 |
-| Bananas      |  1.89 |          6 |
+
+| Seismic tomography         |  |
+|:-----:|:-----|
+| ![](https://box.nju.edu.cn/f/7e9af844662d4d9f9a8c/?dl=1) |  That is an important figure that should be used everywhere. |
+
 """
+
+# ╔═╡ 32a8ae70-c64f-4deb-9d3e-bfaf8016fd74
+
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -356,7 +360,8 @@ version = "5.11.0+0"
 # ╠═620ceb6b-615e-4622-ae79-4abf66bfa979
 # ╠═d24645b9-7cdb-4ecc-b44e-2cfe881098ff
 # ╠═1c01ec7d-0483-4b62-97bb-fa2f74d351db
-# ╟─6af4c32a-1e21-47e8-a319-8729e33a7e53
-# ╟─5705a024-8755-4e94-986b-41e7d26ad3b9
+# ╠═6af4c32a-1e21-47e8-a319-8729e33a7e53
+# ╠═5705a024-8755-4e94-986b-41e7d26ad3b9
+# ╠═32a8ae70-c64f-4deb-9d3e-bfaf8016fd74
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

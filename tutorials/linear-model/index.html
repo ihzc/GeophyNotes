@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/GeophyNotes/assets/favicon.png">
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ["\\(", "\\)"]],
+      processEscapes: true,
+    }
+  };
+</script>
+
+<!-- This weird alignment is required by Franklin's parser. -->
+<script
+    async
+    src="/GeophyNotes/assets/MathJax/MathJax-3.2.2/es5/tex-mml-chtml.js">
+</script>
+
+<style>
+@font-face {
+  src: url("/JuliaTutorialsTemplate//assets/MathJax/MathJax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff">
+}
+</style>
+
+<style>
+@font-face {
+  src: url("/JuliaTutorialsTemplate//assets/MathJax/MathJax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff">
+}
+</style>
+
+<style>
+@font-face {
+  src: url("/JuliaTutorialsTemplate//assets/MathJax/MathJax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff">
+}
+</style>
+
+  <link rel="stylesheet"
+  href="/GeophyNotes/assets/Highlight/cdn-release-11.5.0/build/styles/github.min.css">
+
+<script
+  src="/GeophyNotes/assets/Highlight/cdn-release-11.5.0/build/highlight.min.js">
+</script>
+
+<script
+  src="/GeophyNotes/assets/Highlight/cdn-release-11.5.0/build/languages/julia.min.js">
+</script>
+
+<script
+  src="/GeophyNotes/assets/Highlight/cdn-release-11.5.0/build/languages/julia-repl.min.js">
+</script>
+
+<script>
+  hljs.configure({tabReplace: '    '});
+  hljs.highlightAll();
+</script>
+
+    <style>
+    @font-face {
+      font-family: JuliaMono-Regular;
+      src: url("/JuliaTutorialsTemplate//assets/JuliaMono/juliamono-0.044/webfonts/JuliaMono-Regular.woff2");
+    }
+    </style>
+
+  <link rel="stylesheet" href="/GeophyNotes/css/spectre.min.css">
+  <link rel="stylesheet" href="/GeophyNotes/css/spectre-exp.min.css">
+  <link rel="stylesheet" href="/GeophyNotes/css/spectre-icons.min.css">
+  <link rel="stylesheet" href="/GeophyNotes/css/spectre-overrides.css">
+  <link rel="stylesheet" href="/GeophyNotes/css/docs.min.css">
+
+  <title>Linear model fitting - JuliaTutorialsTemplate</title>
+  <meta name="description" content="A template for building websites with Julia language content. Easily create Pluto notebooks and publish them online.">
+</head>
+<body>
+  <div class="docs-container off-canvas off-canvas-sidebar-show">
+  <div class="docs-navbar">
+    <a class="off-canvas-toggle btn btn-link btn-action" href="#sidebar"><i class="icon icon-menu"></i></a>
+    <div class="btns d-flex">
+      <a class="btn btn-primary ml-1" href="https://es.nju.edu.cn/hzc/list.htm">Z.Huang@NJU</a>
+    </div>
+</div>
+
+<div id="sidebar" class="docs-sidebar off-canvas-sidebar">
+
+<div class="docs-brand">
+    <h5><a href="/GeophyNotes/">Geophysical Notes</a></h5>
+</div>
+
+<div class="docs-nav">
+<div class="accordion-container">
+  <ul class="menu menu-nav">
+
+    <div class="menu-header">Getting startted</div>
+    <li class='menu-item '><a href='/GeophyNotes/getting-started/'>Getting startted</a></li>
+
+    <div class="menu-header">Introduction</div>
+    <li class='menu-item active'><a href='/GeophyNotes/tutorials/linear-model/'>Linear model</a></li>
+
+    <div class="menu-header">Seismology</div>
+    <li class='menu-item active'><a href='/GeophyNotes/tutorials/linear-model/'>Linear model</a></li>
+    
+    <div class="menu-header">Gravity</div>
+    <li class='menu-item active'><a href='/GeophyNotes/tutorials/linear-model/'>Linear model</a></li>
+    
+  </ul>
+</div>
+</div>
+</div>
+<a class="off-canvas-overlay" href="#close"></a>
+
+
+<div class="off-canvas-content">
+<div id="content" class="docs-content">
+<div class="container">
+<!-- Content appended here -->
+<div class="franklin-content"><p>
+<!-- PlutoStaticHTML.Begin -->
+<!--
+    # This information is used for caching.
+    [PlutoStaticHTML.State]
+    input_sha = "b8163f50b2f72ff0f1fc9963e57b33cb360dd36ae15a438d1df0c0ea3ddedac9"
+    julia_version = "1.11.1"
+-->
+<pre class='language-julia'><code class='language-julia'>#using Pkg</code></pre>
+
+
+<pre class='language-julia'><code class='language-julia'>#Pkg.activate(".")</code></pre>
+
+
+
+
+
+
+ </p>
+
+
+
+<div class="markdown"><h1>Linear model fitting</h1><p>This is an example tutorial showing how to fit a linear model with <a href="https://juliastats.org/GLM.jl">GLM.jl</a> and plot it with <a href="https://makie.juliaplots.org/stable/">Makie.jl</a>.</p></div>
+
+
+<div class="markdown"><p>Let's start by generating the linear relationship</p><p class="tex">$$y = 2x + \epsilon,$$</p><p>where <span class="tex">\(\epsilon\)</span> is random noise.</p></div>
+
+<pre class='language-julia'><code class='language-julia'>using DataFrames</code></pre>
+
+
+
+<table><tbody><tr><th></th><th>X</th><th>Y</th></tr><tr><td>1</td><td>1</td><td>22</td></tr><tr><td>2</td><td>2</td><td>8</td></tr><tr><td>3</td><td>3</td><td>18</td></tr><tr><td>4</td><td>4</td><td>23</td></tr><tr><td>5</td><td>5</td><td>13</td></tr><tr><td>6</td><td>6</td><td>30</td></tr><tr><td>7</td><td>7</td><td>15</td></tr><tr><td>8</td><td>8</td><td>35</td></tr><tr><td>9</td><td>9</td><td>28</td></tr><tr><td>10</td><td>10</td><td>26</td></tr><tr><td>...</td></tr><tr><td>100</td><td>100</td><td>214</td></tr></tbody></table>
+
+
+<div class="markdown"><p>In a plot, the data looks as follows:</p></div>
+
+
+<div class="markdown"><p>On this data, a linear model can be fitted:</p></div>
+
+
+<div class="markdown"><p>Which gives estimates for the intercept and slope:</p></div>
+
+
+<div class="row"><div class="column" style="background-color: lightcyan"><h2>COLUMN 1</h2><p>When seismic tomography becomes important, many ideas change.</p></div><div class="column" style="background-color: lightyellow"><h2>COLUMN 2</h2><p>Seismic anisotropy brings more information of the Earth's deformation.</p></div></div>
+
+
+<div class="markdown"><table><tbody><tr><th align="right">Seismic tomography</th><th align="left"></th></tr><tr><td align="right"><img alt="" src="https://box.nju.edu.cn/f/7e9af844662d4d9f9a8c/?dl=1"/></td><td align="left">That is an important figure that should be used everywhere.</td></tr></tbody></table></div>
+
+
+<div style="display: flex; flex-direction: row; object-fit: contain;"><img src="https://box.nju.edu.cn/f/7e9af844662d4d9f9a8c/?dl=1" width="60%"/>
+	 
+    <p><br/><br/> Some explanation here Some explanation here Some explanation here Some explanation here Some explanation here </p></div>
+<div class='manifest-versions'>
+<p>Built with Julia 1.11.1 and</p>
+DataFrames 1.7.0
+</div>
+
+<!-- PlutoStaticHTML.End -->
+
+<p><em>To run this tutorial locally, download <a href="/GeophyNotes/tutorials/linear-model.jl">this file</a> and open it with <a href="https://plutojl.org">Pluto.jl</a>.</em></p>
+<script type="text/javascript" src="/GeophyNotes/libs/ansi_up.js" defer></script>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    Built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and <a href="https://julialang.org">Julia programming language</a>. Last modified: November 14, 2024. 
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

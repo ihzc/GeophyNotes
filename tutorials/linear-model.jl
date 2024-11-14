@@ -98,10 +98,10 @@ md"""
 
 # ╔═╡ 1965792d-1cab-49fa-a9a9-393b449dc0fe
 html"""
-<div style="display: flex; flex-direction: row;">>
-    <img src="https://box.nju.edu.cn/f/7e9af844662d4d9f9a8c/?dl=1" width="70%" />
+<div style="display: flex; flex-direction: row; object-fit: contain;">
+    <img src="https://box.nju.edu.cn/f/7e9af844662d4d9f9a8c/?dl=1" width="60%"/>
 	&nbsp;
-    <p> <br> <br> Some explanation here </p>
+    <p> <br> <br> Some explanation here Some explanation here Some explanation here Some explanation here Some explanation here </p>
 </div>
 """
 
@@ -354,16 +354,16 @@ version = "5.11.0+0"
 # ╠═f8672883-5ed7-409f-9ebf-772701ee00e7
 # ╠═b8a1d747-929f-43d1-9894-bffb72ad7bf3
 # ╠═56e9db72-7ec8-11ec-2b5e-458367c3b8b7
-# ╠═061c6a60-7a8f-48ac-8c3c-8306d4d0c3ee
-# ╠═77a9e4da-f015-4ce6-ba57-60aa5a76193f
-# ╠═b1d83a81-e86f-4035-b34f-c31b31ce2999
+# ╟─061c6a60-7a8f-48ac-8c3c-8306d4d0c3ee
+# ╟─77a9e4da-f015-4ce6-ba57-60aa5a76193f
+# ╟─b1d83a81-e86f-4035-b34f-c31b31ce2999
 # ╠═8920aed2-223d-4861-bf83-1891219640a1
-# ╠═c89de421-3bfd-4ada-962c-a047c79f6c85
-# ╠═620ceb6b-615e-4622-ae79-4abf66bfa979
-# ╠═d24645b9-7cdb-4ecc-b44e-2cfe881098ff
-# ╠═1c01ec7d-0483-4b62-97bb-fa2f74d351db
+# ╟─c89de421-3bfd-4ada-962c-a047c79f6c85
+# ╟─620ceb6b-615e-4622-ae79-4abf66bfa979
+# ╟─d24645b9-7cdb-4ecc-b44e-2cfe881098ff
+# ╟─1c01ec7d-0483-4b62-97bb-fa2f74d351db
 # ╟─6af4c32a-1e21-47e8-a319-8729e33a7e53
-# ╠═5705a024-8755-4e94-986b-41e7d26ad3b9
-# ╠═1965792d-1cab-49fa-a9a9-393b449dc0fe
+# ╟─5705a024-8755-4e94-986b-41e7d26ad3b9
+# ╟─1965792d-1cab-49fa-a9a9-393b449dc0fe
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
